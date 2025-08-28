@@ -8,8 +8,8 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "rtm",
-	Short: "rtm is a simple task manager for keeping track of tasks",
+	Use:   "task-manager",
+	Short: "task-manager is a simple task manager for keeping track of tasks",
 	Long: `A simple yet useable taskmanager. its implicity will make it work keeping track of pending tasks
 	the CLI is completely written in golang`,
 }
