@@ -1,5 +1,6 @@
 ## TODO
 - [x] version
+- [ ] readme
 - [ ] add task
 - [ ] remove task
 - [ ] complete task
