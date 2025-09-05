@@ -23,6 +23,7 @@ var listTasksCmd = &cobra.Command{
 	Long:  `list all uncompleted tasks by default, flag may be set to list completed tasks instead. If more than 25 tasks are in the list, page flag can be set`,
 	Run: func(cmd *cobra.Command, args []string) {
 
+		//TODO: check if null is first, limit 30? also pages
 		rows, err := db.Query("select id,content,date_completed FROM tasks order by date_completed, id")
 		if err != nil {
 			log.Fatal(err)
