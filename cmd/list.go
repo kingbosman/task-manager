@@ -29,19 +29,13 @@ var listTasksCmd = &cobra.Command{
 		}
 		defer rows.Close()
 
-		var tasks []Task
-
 		for rows.Next() {
 			var t Task
 			if err := rows.Scan(&t.Id, &t.Content, &t.Completed); err != nil {
 				log.Fatal(err)
 			}
 
-			tasks = append(tasks, t)
-		}
-
-		for _, v := range tasks {
-			fmt.Printf("[ ] %v \n", v.Content)
+			fmt.Printf("[ ] %d: %v \n", t.Id, t.Content)
 		}
 	},
 }
