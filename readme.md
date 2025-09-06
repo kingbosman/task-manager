@@ -17,7 +17,7 @@ This is a simple command-line interface (CLI) to-do list application built to ex
 
 1.  **Installation**
     ```sh
-    go install [github.com/kingbosman/task-manager](https://github.com/kingbosman/task-manager)
+    go install github.com/kingbosman/task-manager
     ```
 
 2.  **Adding a Task**
