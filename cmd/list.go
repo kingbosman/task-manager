@@ -21,12 +21,13 @@ var listTasksCmd = &cobra.Command{
 	Long:  `list all uncompleted tasks by default, flag may be set to list completed tasks instead. If more than 25 tasks are in the list, page flag can be set`,
 	Run: func(cmd *cobra.Command, args []string) {
 		pageN, err := strconv.Atoi(page)
+		pageSize := 20
 		if err != nil || pageN < 1 {
 			log.Fatal("failed to get page")
 		}
-		offset := (pageN * 5) - 5
+		offset := (pageN * pageSize) - pageSize
 
-		rows, err := db.Query("select id,content, date_completed FROM tasks order by date_completed, id limit 20 offset ?", offset)
+		rows, err := db.Query("select id,content, date_completed FROM tasks order by date_completed, id limit ? offset ?", pageSize, offset)
 		if err != nil {
 			log.Fatal(err)
 		}
