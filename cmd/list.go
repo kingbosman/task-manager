@@ -11,12 +11,6 @@ func init() {
 	rootCmd.AddCommand(listTasksCmd)
 }
 
-type Task struct {
-	Id        int64   `db:"id"`
-	Content   string  `db:"content"`
-	Completed *string `db:"date_completed"`
-}
-
 var listTasksCmd = &cobra.Command{
 	Use:   "list",
 	Short: "list all tasks",
@@ -24,19 +18,20 @@ var listTasksCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 
 		//TODO: check if null is first, limit 30? also pages
-		rows, err := db.Query("select id,content,date_completed FROM tasks order by date_completed, id")
+		rows, err := db.Query("select id,content FROM tasks order by date_completed, id")
 		if err != nil {
 			log.Fatal(err)
 		}
 		defer rows.Close()
 
 		for rows.Next() {
-			var t Task
-			if err := rows.Scan(&t.Id, &t.Content, &t.Completed); err != nil {
+			var id uint64
+			var content string
+			if err := rows.Scan(&id, &content); err != nil {
 				log.Fatal(err)
 			}
 
-			fmt.Printf("[ ] %d: %v \n", t.Id, t.Content)
+			fmt.Printf("[ ] %d: %v \n", id, content)
 		}
 	},
 }
