@@ -15,6 +15,6 @@ var versionCmd = &cobra.Command{
 	Short: "Print the version number of task-manager",
 	Long:  `All software has versions. This is task-manager's`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Task-manager v0.9 -- HEAD")
+		fmt.Println("Task-manager v1.0")
 	},
 }
